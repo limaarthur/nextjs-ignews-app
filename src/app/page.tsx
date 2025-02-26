@@ -13,9 +13,7 @@ interface HomeProps {
 }
 
 export default async function Home() {
-  const price = await stripe.prices.retrieve('price_1QhYtjLpEnrloBIlqRXeAhEu', {
-    expand: ['product']
-  });
+  const price = await stripe.prices.retrieve('price_1QhYtjLpEnrloBIlqRXeAhEu')
 
   const product = {
     priceId: price.id,
@@ -36,7 +34,7 @@ export default async function Home() {
             Get access to all the publications <br />
             <span>for {product.amount} month</span>
           </p>
-          <SubscribeButton />
+          <SubscribeButton priceId={product.priceId} />
         </section>
 
         <img src="/images/welcome.svg" alt="Girl coding" />
