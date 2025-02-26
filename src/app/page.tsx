@@ -1,5 +1,3 @@
-import { GetServerSideProps } from "next";
-
 import { Header } from "@/components/Header"
 import { SubscribeButton } from "@/components/SubscribeButton";
 
@@ -21,7 +19,10 @@ export default async function Home() {
 
   const product = {
     priceId: price.id,
-    amount: price.unit_amount ? price.unit_amount / 100 : 0,
+    amount: new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(price.unit_amount ? price.unit_amount / 100 : 0),
   };
 
   return (
